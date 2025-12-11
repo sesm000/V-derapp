@@ -138,9 +138,10 @@ posBtn.addEventListener("click", function () {
   iconEl.style.display = "none";
 
   showMessage("Hämtar din position... ");
-  navigator.geolocation.getCurrentPosition(showPosWeather, () =>
-    showMessage(" Kunde inte hämta position.")
-  );
+  navigator.geolocation.getCurrentPosition(showPosWeather, (err) => {
+    console.error(err);
+    showMessage(" Kunde inte hämta position.");
+  });
 });
 
 async function showPosWeather(pos) {
